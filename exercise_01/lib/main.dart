@@ -1,7 +1,8 @@
+import 'package:exercise_01/ProfileUserPage.dart';
 import 'package:flutter/material.dart';
 
-import 'ProfileUserPage.dart';
 import 'BankingApp.dart';
+import 'ProfileUserPage.dart';
 
 void main() {
   runApp(const MainApp());
@@ -14,7 +15,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
         home: Scaffold(
-      body: BankingApp(),
+      body: ProfileUserPage(),
     ));
   }
 }
