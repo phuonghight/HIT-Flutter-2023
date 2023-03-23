@@ -148,7 +148,7 @@ class _MathGameState extends State<MathGame> {
       // display time
       Center(
         child: Text(
-          score.toString(),
+          "Score: $score",
           style: const TextStyle(color: Colors.white, fontSize: 24),
         ),
       ),
@@ -191,7 +191,6 @@ class _MathGameState extends State<MathGame> {
                 } else {
                   overGame();
                 }
-                setState(() {});
               },
               child: const Icon(Icons.done_rounded)),
           ElevatedButton(
@@ -208,7 +207,6 @@ class _MathGameState extends State<MathGame> {
                 } else {
                   overGame();
                 }
-                setState(() {});
               },
               child: const Icon(Icons.clear_rounded))
         ],
@@ -220,8 +218,8 @@ class _MathGameState extends State<MathGame> {
 
   createExpression() {
     var rd = Random();
-    p1 = rd.nextInt(10) + 20; // 30 - 40
-    p2 = rd.nextInt(20); // 0 - 19
+    p1 = rd.nextInt(10) + 20; // 30 - 39
+    p2 = rd.nextInt(20) + 1; // 1 - 20
     int randomSign = rd.nextInt(signArr.length); // 0 - 3
     sign = signArr[randomSign];
     switch (randomSign) {
@@ -240,7 +238,7 @@ class _MathGameState extends State<MathGame> {
       default:
     }
     result = (correctResult + rd.nextInt(2) - 1); // -1 0 1
-    setinterval();
+    setInterval();
   }
 
   overGame() {
@@ -249,7 +247,7 @@ class _MathGameState extends State<MathGame> {
     clearInterval();
   }
 
-  setinterval() {
+  setInterval() {
     _timer = Timer.periodic(const Duration(seconds: 1), (Timer timer) {
       time--;
       if (time < 0) {
@@ -263,6 +261,7 @@ class _MathGameState extends State<MathGame> {
   clearInterval() {
     _timer.cancel();
     time = 10;
+    setState(() {});
   }
 
   Column homeGameWidget() {
