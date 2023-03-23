@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'MathGame/MathGame.dart';
+import 'MathGame/math_game.dart';
 
 void main() {
   runApp(const MainApp());

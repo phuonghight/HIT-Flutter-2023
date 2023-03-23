@@ -21,7 +21,8 @@ class _MathGameState extends State<MathGame> {
   int time = 10;
   late Timer _timer;
 
-  late int p1, p2, result, correctResult;
+  late int p1, p2;
+  late int correctResult, result;
   late String sign;
   List<String> signArr = ["+", "-", "x", "/"];
 
@@ -46,16 +47,16 @@ class _MathGameState extends State<MathGame> {
 
       // Is playing game UI
       child: status == 0
-          ? HomeMethod()
+          ? homeGameWidget()
           : status == 1
-              ? PlayMethod()
-              : OverGameMethod(),
+              ? playGameWidget()
+              : overGameWigdget(),
     );
   }
 
-  Column OverGameMethod() {
+  Column overGameWigdget() {
     var rd = Random();
-    String memeString = memeOverGame[rd.nextInt(memeOverGame.length + 1)];
+    String memeString = memeOverGame[rd.nextInt(memeOverGame.length)];
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -96,6 +97,7 @@ class _MathGameState extends State<MathGame> {
                 onPressed: () {
                   score = 0;
                   status = 1;
+                  createExpression();
                   setState(() {});
                 },
                 child: const Icon(
@@ -119,7 +121,7 @@ class _MathGameState extends State<MathGame> {
     );
   }
 
-  Column PlayMethod() {
+  Column playGameWidget() {
     return Column(children: [
       const SizedBox(
         height: 20,
@@ -129,11 +131,14 @@ class _MathGameState extends State<MathGame> {
       SafeArea(
           child: Row(
         children: [
-          Container(
+          AnimatedContainer(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8), color: Colors.white),
             height: 10,
             width: MediaQuery.of(context).size.width * time / 10,
+            duration: time != 10
+                ? const Duration(seconds: 1)
+                : const Duration(seconds: 0),
           ),
         ],
       )),
@@ -217,24 +222,24 @@ class _MathGameState extends State<MathGame> {
     var rd = Random();
     p1 = rd.nextInt(10) + 20; // 30 - 40
     p2 = rd.nextInt(20); // 0 - 19
-    int randomSign = rd.nextInt(signArr.length + 1); // 0 - 3
+    int randomSign = rd.nextInt(signArr.length); // 0 - 3
     sign = signArr[randomSign];
     switch (randomSign) {
       case 0:
-        correctResult = p1 + p2;
+        correctResult = (p1 + p2);
         break;
       case 1:
-        correctResult = p1 - p2;
+        correctResult = (p1 - p2);
         break;
       case 2:
-        correctResult = p1 * p2;
+        correctResult = (p1 * p2);
         break;
       case 3:
-        correctResult = (p1 / p2) as int;
+        correctResult = (p1 ~/ p2);
         break;
       default:
     }
-    result = correctResult + rd.nextInt(2) - 1; // -1 0 1
+    result = (correctResult + rd.nextInt(2) - 1); // -1 0 1
     setinterval();
   }
 
@@ -260,9 +265,8 @@ class _MathGameState extends State<MathGame> {
     time = 10;
   }
 
-  Expanded HomeMethod() {
-    return Expanded(
-        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+  Column homeGameWidget() {
+    return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
       const Text(
         "Freaking Math",
         style: TextStyle(color: Colors.white, fontSize: 46),
@@ -285,6 +289,6 @@ class _MathGameState extends State<MathGame> {
             Icons.play_arrow_rounded,
             size: 68,
           ))
-    ]));
+    ]);
   }
 }
