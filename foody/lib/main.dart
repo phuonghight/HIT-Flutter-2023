@@ -5,17 +5,17 @@ import 'package:foody/Components/categories.dart';
 import 'package:foody/data/dummy_data.dart';
 
 void main() {
-  runApp(MainApp());
+  runApp(const MainApp());
 }
 
 class MainApp extends StatelessWidget {
-  MainApp({super.key});
+  const MainApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        '/catogeries': (context) => HomeWidget(DUMMY_CATEGORIES),
+        '/catogeries': (context) => const HomeWidget(DUMMY_CATEGORIES),
         '/catogeries/meals/:id': (context) => const Meals([]),
         '/catogeries/meals/details/:id': (context) =>
             MealDetails(DUMMY_MEALS[0])

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:foody/Components/meals.dart';
-// import 'package:flutter/src/widgets/framework.dart';
-// import 'package:flutter/src/widgets/placeholder.dart';
 import '../data/dummy_data.dart';
 
 class HomeWidget extends StatefulWidget {
