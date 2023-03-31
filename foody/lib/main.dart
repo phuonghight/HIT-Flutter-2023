@@ -42,8 +42,6 @@ class MainApp extends StatelessWidget {
         return myRouter;
       },
       initialRoute: '/catogeries',
-      // home: Meals(DUMMY_MEALS),
-      // home: MealDetails(DUMMY_MEALS[5]),
     );
   }
 }

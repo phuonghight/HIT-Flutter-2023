@@ -99,19 +99,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                         ],
                       )),
                 ]))
-        // persistentFooterButtons: [
-        //   Container(
-        //     decoration: BoxDecoration(color: Colors.pink),
-        //     width: double.infinity,
-        //     child: Row(
-        //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-        //       children: [
-        //         TextButton(child: const Text('Button 1'), onPressed: () {}),
-        //         TextButton(child: const Text('Button 2'), onPressed: () {}),
-        //       ],
-        //     ),
-        //   )
-        // ],
         );
   }
 }
