@@ -9,7 +9,7 @@ List<Task> db = [
       DateTime(2023, 04, 06),
       false,
       false,
-      Colors.red),
+      Colors.yellow),
   Task(
       "Task 2",
       Duration(hours: DateTime.now().hour, minutes: DateTime.now().minute),
