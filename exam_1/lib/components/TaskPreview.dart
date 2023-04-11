@@ -4,6 +4,8 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:exam_1/struct/Task.dart';
 import 'package:flutter/widgets.dart';
 
+import '../utils/date-format.dart';
+
 class TaskPreview extends StatefulWidget {
   Task task;
   TaskPreview(this.task, {super.key});
@@ -45,7 +47,7 @@ class _TaskPreviewState extends State<TaskPreview> {
               style: const TextStyle(color: Colors.white, fontSize: 24),
             ),
             Text(
-                'From: ${formatDuration(widget.task.startTime)} - To: ${formatDuration(widget.task.endTime)}'),
+                'From: ${formatTimeOfDay(widget.task.start)} - To: ${formatTimeOfDay(widget.task.end)}'),
             Text('Deadline: ${formatDate(widget.task.deadline)}')
           ],
         ),
@@ -64,14 +66,10 @@ class _TaskPreviewState extends State<TaskPreview> {
             });
           },
           icon: widget.task.isFavourite
-              ? Icon(Icons.favorite)
-              : Icon(Icons.favorite_border),
+              ? const Icon(Icons.favorite)
+              : const Icon(Icons.favorite_border),
         ),
       ),
     );
   }
-
-  formatDuration(Duration d) => d.toString().split('.').first.padLeft(8, "0");
-  formatDate(DateTime d) =>
-      '${d.day.toString().padLeft(2, '0')}-${d.month.toString().padLeft(2, '0')}-${d.year}';
 }

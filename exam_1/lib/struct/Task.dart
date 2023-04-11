@@ -3,14 +3,21 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 class Task {
-  final Color color;
-  final String title;
-  final Duration startTime;
-  final Duration endTime;
-  final DateTime deadline;
+  String title;
+  TimeOfDay start;
+  TimeOfDay end;
+  DateTime deadline;
+  Color color;
   bool isFavourite;
   bool isCompleted;
 
-  Task(this.title, this.startTime, this.endTime, this.deadline,
-      this.isFavourite, this.isCompleted, this.color);
+  Task(
+    this.title,
+    this.deadline,
+    this.start, {
+    this.end = const TimeOfDay(hour: 23, minute: 59),
+    this.color = Colors.pink,
+    this.isCompleted = false,
+    this.isFavourite = false,
+  });
 }
