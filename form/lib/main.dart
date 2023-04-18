@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:form/data/db.dart';
+
 import 'package:form/views/HomeScreen.dart';
 import 'package:form/views/NewCustomer.dart';
 
@@ -13,8 +15,8 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        '/customer': (context) => HomeScreen(),
-        '/customer/create-new': (context) => NewCustomer(),
+        '/customer': (context) => HomeScreen(customers: customers),
+        '/customer/create-new': (context) => const NewCustomer(),
       },
       initialRoute: '/customer',
     );

@@ -75,10 +75,10 @@ List<Customer> customers = [
     district: 'Bắc Từ Liêm',
     address: 'Số x ngõ xx',
     phoneNumber: '0111 111 111',
-    taxcode: '111',
-    idNumber: '111',
+    taxcode: '11111111111',
+    idNumber: '111111111111',
     email: '111@gmail.com',
-    description: 'Coder',
+    description: 'I love code because it lets me do fun stuff like this.',
   ),
   Customer(
     name: 'Mi',
@@ -90,7 +90,7 @@ List<Customer> customers = [
     taxcode: '222',
     idNumber: '222',
     email: '222@gmail.com',
-    description: 'Coder',
+    description: 'coder',
   ),
   Customer(
     name: 'Doanh',
