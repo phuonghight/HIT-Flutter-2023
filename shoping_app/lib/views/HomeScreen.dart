@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:shoping_app/components/CartComponent.dart';
 import 'package:shoping_app/components/MealCard.dart';
 import 'package:shoping_app/entity/Meal.dart';
 
-class MealList extends StatelessWidget {
+// ignore: must_be_immutable
+class MealList extends StatefulWidget {
   List<Meal> meals;
   MealList({super.key, required this.meals});
 
+  @override
+  State<MealList> createState() => _MealListState();
+}
+
+class _MealListState extends State<MealList> {
+  late List<Meal> target = widget.meals;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +34,13 @@ class MealList extends StatelessWidget {
             filled: true,
             fillColor: Colors.grey[200],
           ),
+          onChanged: (value) {
+            target = widget.meals
+                .where((element) =>
+                    element.name.toLowerCase().contains(value.toLowerCase()))
+                .toList();
+            setState(() {});
+          },
         ),
         actions: <Widget>[
           IconButton(
@@ -38,11 +53,12 @@ class MealList extends StatelessWidget {
       ),
       body: ListView.builder(
         shrinkWrap: true,
-        itemCount: meals.length,
+        itemCount: target.length,
         itemBuilder: (context, index) => MealCard(
-          meal: meals[index],
+          meal: target[index],
         ),
       ),
+      bottomNavigationBar: CartComponent(),
     );
   }
 }
