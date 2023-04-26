@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shoping_app/components/CartDetails.dart';
 
 import 'package:shoping_app/controller/CartController.dart';
 import 'package:shoping_app/data/index.dart';
-import 'package:shoping_app/views/HomeScreen.dart';
+import 'package:shoping_app/views/MealList.dart';
 import 'package:shoping_app/views/MealDetails.dart';
 import 'entity/Meal.dart';
 
@@ -38,7 +39,7 @@ class MainApp extends StatelessWidget {
       },
       onGenerateRoute: (settings) {
         if (settings.name!.contains('/meal/details/')) {
-          Meal? meal = db.firstWhere(
+          Meal meal = db.firstWhere(
             (element) => element.id == settings.arguments,
           );
           return MaterialPageRoute(
@@ -47,6 +48,7 @@ class MainApp extends StatelessWidget {
         }
       },
       // initialRoute: '/meals',
+      // home: CartDetails(),
       home: MealList(meals: db),
     );
   }

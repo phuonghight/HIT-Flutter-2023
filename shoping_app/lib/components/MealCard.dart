@@ -16,14 +16,6 @@ class MealCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // quantity.text = context
-    //     .watch<CartController>()
-    //     .cart
-    //     .firstWhere(
-    //       (element) => element.meal.id == meal.id,
-    //     )
-    //     .quantity
-    //     .toString();
     quantity.text = '1';
     return GestureDetector(
       onTap: () {
@@ -45,6 +37,7 @@ class MealCard extends StatelessWidget {
           ),
         ),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.network(
               meal.imageUrl,
@@ -55,113 +48,117 @@ class MealCard extends StatelessWidget {
             const SizedBox(
               width: 16,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  meal.name,
-                ),
-                Row(
-                  children: [
-                    Text(
-                      '${meal.sold} đã bán',
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    meal.name,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
                     ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    const Text('|'),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      '${meal.likes} lượt thích',
-                    ),
-                  ],
-                ),
-                Text(
-                  formatPriceToString(meal.price),
-                  style: TextStyle(
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 18,
                   ),
-                ),
-                Form(
-                  key: formKey,
-                  child: Row(
+                  Row(
                     children: [
-                      // button minus one
-                      Container(
-                        width: 25,
-                        height: 25,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            width: 1,
-                            color: Theme.of(context).primaryColor,
-                          ),
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(5),
-                          ),
-                        ),
-                        child: GestureDetector(
-                          onTap: () {
-                            context.read<CartController>().removeOutCart(
-                                  meal,
-                                  int.parse(quantity.text),
-                                );
-                          },
-                          child: Center(
-                            child: Icon(
-                              Icons.remove,
-                              color: Theme.of(context).primaryColor,
-                              size: 16,
-                            ),
-                          ),
-                        ),
+                      Text(
+                        '${meal.sold} đã bán',
                       ),
-
-                      // input quantity
-                      SizedBox(
-                        width: 50,
-                        child: TextFormField(
-                          controller: quantity,
-                          textAlign: TextAlign.center,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: '$quantity',
-                          ),
-                        ),
+                      const SizedBox(
+                        width: 10,
                       ),
-
-                      // button plus one
-                      Container(
-                        width: 25,
-                        height: 25,
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).primaryColor,
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(5),
-                          ),
-                        ),
-                        child: GestureDetector(
-                          onTap: () {
-                            context.read<CartController>().addToCart(
-                                  meal,
-                                  int.parse(quantity.text),
-                                );
-                          },
-                          child: const Center(
-                            child: Icon(
-                              Icons.add,
-                              color: Colors.white,
-                              size: 16,
-                            ),
-                          ),
-                        ),
+                      const Text('|'),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        '${meal.likes} lượt thích',
                       ),
                     ],
                   ),
-                ),
-              ],
+                  Text(
+                    formatPriceToString(meal.price),
+                    style: TextStyle(
+                      color: Theme.of(context).primaryColor,
+                      fontSize: 18,
+                    ),
+                  ),
+                  Form(
+                    key: formKey,
+                    child: Row(
+                      children: [
+                        // button minus one
+                        Container(
+                          width: 25,
+                          height: 25,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              width: 1,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(5),
+                            ),
+                          ),
+                          child: GestureDetector(
+                            onTap: () {
+                              context.read<CartController>().removeOutCart(
+                                    meal,
+                                  );
+                            },
+                            child: Center(
+                              child: Icon(
+                                Icons.remove,
+                                color: Theme.of(context).primaryColor,
+                                size: 16,
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        // input quantity
+                        SizedBox(
+                          width: 30,
+                          child: TextFormField(
+                            controller: quantity,
+                            textAlign: TextAlign.center,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: '$quantity',
+                            ),
+                          ),
+                        ),
+
+                        // button plus one
+                        Container(
+                          width: 25,
+                          height: 25,
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).primaryColor,
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(5),
+                            ),
+                          ),
+                          child: GestureDetector(
+                            onTap: () {
+                              context.read<CartController>().addToCart(
+                                    meal,
+                                  );
+                            },
+                            child: const Center(
+                              child: Icon(
+                                Icons.add,
+                                color: Colors.white,
+                                size: 16,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             )
           ],
         ),

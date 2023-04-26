@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:shoping_app/controller/CartController.dart';
 import 'package:shoping_app/utils/formatPrice.dart';
 
-class CartComponent extends StatelessWidget {
-  const CartComponent({super.key});
+class CartFotter extends StatelessWidget {
+  const CartFotter({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,9 @@ class CartComponent extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            context.read<CartController>().showCartDetailsComponent();
+          },
           icon: Icon(
             Icons.shopping_cart,
             color: Theme.of(context).primaryColor,

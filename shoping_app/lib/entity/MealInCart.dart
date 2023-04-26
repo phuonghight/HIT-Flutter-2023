@@ -15,7 +15,7 @@ class MealInCart {
     required this.totalPrice,
   });
 
-  getTotalPrice() {
+  double get getTotalPrice {
     return meal.price * quantity;
   }
 }
